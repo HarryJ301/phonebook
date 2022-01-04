@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -12,7 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\Number::factory(60)->create();
-         \App\Models\User::factory(20)->create();
+        $this->call([
+            UserSeeder::class
+        ]);
     }
 }
