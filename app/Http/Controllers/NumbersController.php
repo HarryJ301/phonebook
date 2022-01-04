@@ -18,7 +18,7 @@ class NumbersController extends Controller
      */
     public function index() {
         $numbers = Auth::user()
-            ->numbers
+            ->numbers()
             ->paginate(20);
 
         //Following code based on 'CRUD actions throughout MVC', Andrew Flannery, 2021.
