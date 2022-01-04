@@ -18,8 +18,8 @@
     <div class="container mx-auto">
         <ul>
             <li><a href="/dashboard">Home</a></li>
-            <li><a href="/numbers">Numbers</a></li>
-            <li><a href="/numbers/create">Add number</a></li>
+            <li><a href="/numbers">Contacts</a></li>
+            <li><a href="/numbers/create">Add Contact</a></li>
         </ul>
     </div>
 </section>

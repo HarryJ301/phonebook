@@ -53,8 +53,18 @@ class NumbersController extends Controller
     public function store(NumberRequest $request){
 
         $number = new Number();
-        $number->name = $request->name;
+        $number->first_name = $request->first_name;
+        $number->middle_name = $request->middle_name;
+        $number->last_name = $request->last_name;
+        $number->maiden_name = $request->maiden_name ;
         $number->phone_number = $request->phone_number;
+        $number->mobile_number = $request->mobile_number;
+        $number->birthday = $request->birthday;
+        $number->email = $request->email;
+        $number->occupation = $request->occupation;
+        $number->url = $request->url;
+        $number->other_names = $request->other_names;
+        $number->notes = $request->notes;
         $number->user()->associate(Auth::user());
         $number->save();
 
@@ -102,7 +112,19 @@ class NumbersController extends Controller
 
         return view('numbers.edit', [
             'number' => $number,
-            'phone_number' => $number
+            'first_name' => $number,
+            'middle_name' => $number,
+            'last_name' => $number,
+            'maiden_name' => $number,
+            'phone_number' => $number,
+            'mobile_number' => $number,
+            'birthday' => $number,
+            'email' => $number,
+            'occupation' => $number,
+            'url' => $number,
+            'other_names' => $number,
+            'notes' => $number,
+
         ]);
     }
 
@@ -115,15 +137,25 @@ class NumbersController extends Controller
      * @param  \App\Models\Number  $number
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Number $number) {
+    public function update(NumberRequest $request, Number $number) {
 
         if ($number->user->id !== Auth::user()->id) {
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        $number->name = $request->name;
+        $number->first_name = $request->first_name;
+        $number->middle_name = $request->middle_name;
+        $number->last_name = $request->last_name;
+        $number->maiden_name = $request->maiden_name;
         $number->phone_number = $request->phone_number;
-        $number->save;
+        $number->mobile_number = $request->mobile_number;
+        $number->birthday = $request->birthday;
+        $number->email = $request->email;
+        $number->occupation = $request->occupation;
+        $number->url = $request->url;
+        $number->other_names = $request->other_names;
+        $number->notes = $request->notes;
+        $number->save();
 
         return redirect()
             ->route('numbers.index')
