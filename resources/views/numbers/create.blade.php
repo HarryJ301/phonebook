@@ -2,7 +2,6 @@
 
 @section('title', 'New number')
 
-{{--Following code based on 'CRUD actions throughout MVC', Andrew Flannery, 2021.--}}
 
 @section('content')
     <form action="{{ route('numbers.store') }}" method="POST">

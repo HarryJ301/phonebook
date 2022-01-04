@@ -16,7 +16,7 @@ class NumbersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request)  {
         $numbers = Auth::user()
             ->numbers()
             ->paginate(20);
@@ -190,6 +190,17 @@ class NumbersController extends Controller
             ]]);
     }
 
+    public function search(Request $request)
+    {
 
+        $search = $request->input('search');
+
+        $numbers = Number::query()
+            ->where('last_name', 'LIKE', "%{$search}%")
+            ->orWhere('phone_number', 'LIKE', "%{$search}%")
+            ->get();
+
+        return view('search', compact('numbers'));
+    }
 
 }

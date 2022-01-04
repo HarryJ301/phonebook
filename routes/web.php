@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NumbersController;
+use App\Models\Number;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +25,7 @@ Route::resource('/numbers', NumbersController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');}
         )->middleware(['auth'])->name('dashboard');
+
+Route::get('/search', [NumbersController::class, 'search']);
 
 require __DIR__.'/auth.php';
