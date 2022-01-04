@@ -24,7 +24,9 @@ class NumberRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required', 'phone_number' => 'required'
+            'first_name' => 'required', 'middle_name' => 'present', 'last_name' => 'required',
+            'phone_number' => 'required', 'mobile_number' => 'present', 'birthday' => 'present', 'email' => 'present',
+            'occupation' => 'present', 'url' => 'present', 'other_names' => 'present', 'notes' => 'present',
         ];
     }
 }

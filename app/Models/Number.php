@@ -17,8 +17,18 @@ class Number extends Model
      * @var integer[]
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'maiden_name',
         'phone_number',
+        'mobile_number',
+        'birthday',
+        'email',
+        'occupation',
+        'url',
+        'other_names',
+        'notes',
     ];
 
     public function user() {

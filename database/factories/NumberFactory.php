@@ -20,8 +20,18 @@ class NumberFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
+            'middle_name' => $this->faker->lastName(),
+            'last_name' => $this->faker->lastName(),
+            'maiden_name' => $this->faker->lastName(),
             'phone_number' => $this->faker->phoneNumber(),
+            'mobile_number' => $this->faker->phoneNumber(),
+            'birthday' => $this->faker->date(),
+            'email' => $this->faker->email(),
+            'occupation' => $this->faker->jobTitle(),
+            'url' => $this->faker->url(),
+            'other_names' => $this->faker->firstName(),
+            'notes' => $this->faker->realText(),
         ];
     }
 }

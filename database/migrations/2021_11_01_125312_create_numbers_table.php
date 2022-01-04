@@ -16,8 +16,18 @@ class CreateNumbersTable extends Migration
         Schema::create('numbers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
+            $table->string('maiden_name')->nullable();
             $table->string('phone_number');
+            $table->string('mobile_number')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('url')->nullable();
+            $table->string('other_names')->nullable();
+            $table->longText('notes')->nullable();
             $table->timestamps();
         });
     }
