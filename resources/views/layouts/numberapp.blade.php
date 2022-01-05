@@ -20,8 +20,6 @@
             <li><a href="/dashboard">Home</a></li>
             <li><a href="/numbers">Contacts</a></li>
             <li><a href="/numbers/create">Add Contact</a></li>
-            <br>
-            <li><a href="/search">Search Contacts</a></li>
         </ul>
     </div>
 </section>

@@ -17,9 +17,17 @@ class NumbersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)  {
-        $numbers = Auth::user()
-            ->numbers()
+
+        if ($search = $request -> search) {
+            $numbers = Auth::user()
+            ->numbers()->where('first_name', 'like', $search)->orWhere('phone_number', 'like', $search)
             ->paginate(20);
+        }
+        else{
+            $numbers = Auth::user()
+                ->numbers()
+                ->paginate(20);
+        }
 
         //Following code based on 'CRUD actions throughout MVC', Andrew Flannery, 2021.
         return view('numbers/index', [
@@ -188,19 +196,6 @@ class NumbersController extends Controller
                 'level' => 'success',
                 'message' => 'Your number was removed successfully'
             ]]);
-    }
-
-    public function search(Request $request)
-    {
-
-        $search = $request->input('search');
-
-        $numbers = Number::query()
-            ->where('last_name', 'LIKE', "%{$search}%")
-            ->orWhere('phone_number', 'LIKE', "%{$search}%")
-            ->get();
-
-        return view('search', compact('numbers'));
     }
 
 }
