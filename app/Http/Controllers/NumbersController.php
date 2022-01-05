@@ -19,7 +19,13 @@ class NumbersController extends Controller
      */
     public function index(Request $request)  {
 
-        if ($search = $request -> search) {
+        $currentUser = optional(Auth::user())->id;
+
+        if ($currentUser !== Auth::user()->id) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
+        else if ($search = $request -> search) {
             $numbers = Auth::user()
             ->numbers()->where('first_name', 'like', $search)->orWhere('phone_number', 'like', $search)
             ->paginate(20);
@@ -34,7 +40,7 @@ class NumbersController extends Controller
             , 'Pragma' => 'public'
         ];
 
-            $currentUser = optional(Auth::user())->id;
+
 
             $keys = Number::all()->toArray();
 
