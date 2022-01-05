@@ -8,6 +8,8 @@
     <p>Maiden Name: {{ $number->maiden_name }}</p>
     <p>Phone Number: {{ $number->phone_number }}</p>
     <p>Mobile Number: {{ $number->mobile_number }}</p>
+    <p>Address: {{ $number->address }}</p>
+    <p>Postcode: {{$number->postcode}}</p>
     <p>Birthday: {{ $number->birthday }}</p>
     <p>Email: {{ $number->email }}</p>
     <p>Occupation: {{ $number->occupation }}</p>
@@ -20,4 +22,5 @@
     @if($number->isImportant == '1')
         <p>!!!</p>
     @endif
+
 @endsection

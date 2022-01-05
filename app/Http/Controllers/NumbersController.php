@@ -14,6 +14,7 @@ class NumbersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)  {
@@ -22,6 +23,39 @@ class NumbersController extends Controller
             $numbers = Auth::user()
             ->numbers()->where('first_name', 'like', $search)->orWhere('phone_number', 'like', $search)
             ->paginate(20);
+        }
+
+        else if ($request ->download == "Download"){
+        $headers = [
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0'
+            , 'Content-type' => 'text/csv'
+            , 'Content-Disposition' => 'attachment; filename=contacts.csv'
+            , 'Expires' => '0'
+            , 'Pragma' => 'public'
+        ];
+
+            $currentUser = optional(Auth::user())->id;
+
+            $keys = Number::all()->toArray();
+
+            $list = Number::all()
+                ->where('user_id', $currentUser)
+                ->toArray();
+
+            //echo '<pre>'; print_r($list); echo '</pre>';
+
+        # add headers for each column in the CSV download
+        array_unshift($list, array_keys($keys[0]));
+
+        $callback = function () use ($list) {
+            $FH = fopen('php://output', 'w');
+            foreach ($list as $row) {
+                fputcsv($FH, $row);
+            }
+            fclose($FH);
+        };
+
+            return response()->stream($callback, 200, $headers);
         }
         else{
             $numbers = Auth::user()
@@ -68,6 +102,8 @@ class NumbersController extends Controller
         $number->phone_number = $request->phone_number;
         $number->mobile_number = $request->mobile_number;
         $number->birthday = $request->birthday;
+        $number->address = $request->address;
+        $number->postcode = $request->postcode;
         $number->email = $request->email;
         $number->occupation = $request->occupation;
         $number->url = $request->url;
@@ -128,6 +164,8 @@ class NumbersController extends Controller
             'maiden_name' => $number,
             'phone_number' => $number,
             'mobile_number' => $number,
+            'address' => $number,
+            'postcode' => $number,
             'birthday' => $number,
             'email' => $number,
             'occupation' => $number,
@@ -162,6 +200,8 @@ class NumbersController extends Controller
         $number->phone_number = $request->phone_number;
         $number->mobile_number = $request->mobile_number;
         $number->birthday = $request->birthday;
+        $number->address = $request->address;
+        $number->postcode = $request->postcode;
         $number->email = $request->email;
         $number->occupation = $request->occupation;
         $number->url = $request->url;

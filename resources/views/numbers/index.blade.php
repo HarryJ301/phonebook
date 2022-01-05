@@ -12,8 +12,15 @@
     @endif
     <form action="{{ route('numbers.index')  }}" method="GET">
         <p>Search by Name or Number</p>
-        <input type="text" name="search" required></input>
+        <input type="text" name="search" required/>
         <button type="submit">Search</button>
+    </form>
+
+    <br>
+
+    <p>Contacts Options: </p>
+    <form action="{{ route('numbers.index')  }}" method="GET">
+        <button type="submit" style="background-color: #ced2d7; border-radius: 10%" name="download" value="Download">Export Contacts as CSV</button>
     </form>
 
     @foreach ($numbers as $number)

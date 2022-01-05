@@ -25,7 +25,7 @@ class NumberRequest extends FormRequest
     {
         return [
             'first_name' => 'required', 'middle_name' => 'present', 'last_name' => 'required',
-            'phone_number' => 'required', 'mobile_number' => 'present', 'birthday' => 'present', 'email' => 'present',
+            'phone_number' => 'required', 'mobile_number' => 'present', 'address' => 'present', 'birthday' => 'present', 'email' => 'present',
             'occupation' => 'present', 'url' => 'present', 'other_names' => 'present', 'notes' => 'present',
             'isFavourite' => 'present', 'isImportant' => 'present',
         ];
