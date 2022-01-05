@@ -24,6 +24,8 @@ class Number extends Model
         'phone_number',
         'mobile_number',
         'birthday',
+        'address',
+        'postcode',
         'email',
         'occupation',
         'url',

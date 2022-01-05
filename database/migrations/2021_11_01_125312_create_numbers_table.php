@@ -22,6 +22,8 @@ class CreateNumbersTable extends Migration
             $table->string('maiden_name')->nullable();
             $table->string('phone_number');
             $table->string('mobile_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('postcode')->nullable();
             $table->date('birthday')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('occupation')->nullable();

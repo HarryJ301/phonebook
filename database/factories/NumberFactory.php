@@ -26,6 +26,8 @@ class NumberFactory extends Factory
             'maiden_name' => $this->faker->lastName(),
             'phone_number' => $this->faker->phoneNumber(),
             'mobile_number' => $this->faker->phoneNumber(),
+            'address' => $this->faker->address(),
+            'postcode' => $this->faker->postcode(),
             'birthday' => $this->faker->date(),
             'email' => $this->faker->email(),
             'occupation' => $this->faker->jobTitle(),

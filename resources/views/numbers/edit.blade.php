@@ -64,6 +64,24 @@
         </div>
 
         <div class=" my-10">
+            <label for="address">Address:</label>
+            <textarea  name="address" id="address"  class=" p-2 bg-gray-200 @error('address') is-invalid @enderror"></textarea>
+
+            @error('address')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class=" my-10">
+            <label for="birthday">Postcode:</label>
+            <input type="text" name="postcode" id="postcode"  class=" p-2 bg-gray-200 @error('postcode') is-invalid @enderror"></input>
+
+            @error('postcode')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class=" my-10">
             <label for="birthday">Birthday:</label>
             <input type="date" name="birthday" id="birthday"  class=" p-2 bg-gray-200 @error('birthday') is-invalid @enderror"></input>
 
