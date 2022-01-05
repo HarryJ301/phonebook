@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->count(50)
-            ->hasNumbers(rand(0, 50))
+            ->hasNumbers(rand(0, 20))
             ->create();
 
         User::factory()
-            ->hasNumbers(27)
+            ->hasNumbers(20)
             ->create([
                 'email' => 'admin@email.com'
             ]);

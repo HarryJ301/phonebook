@@ -14,4 +14,10 @@
     <p>URL: {{ $number->url }}</p>
     <p>Other Names: {{ $number->other_names }}</p>
     <p>Notes: {{ $number->notes }}</p>
+    @if($number->isFavourite == '1')
+        <p>♡</p>
+    @endif
+    @if($number->isImportant == '1')
+        <p>!!!</p>
+    @endif
 @endsection

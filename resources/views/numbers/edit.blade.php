@@ -117,6 +117,24 @@
             @enderror
         </div>
 
+        <div class=" my-10">
+            <label for="notes">Favourite:</label>
+            <input type="checkbox" name="isFavourite" id="isFavourite" value="1" class=" p-2 bg-gray-200 @error('isFavourite') is-invalid @enderror"></input>
+
+            @error('isFavourite')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class=" my-10">
+            <label for="notes">Important:</label>
+            <input type="checkbox" name="isImportant" id="isImportant" value="1" class=" p-2 bg-gray-200 @error('isImportant') is-invalid @enderror"></input>
+
+            @error('isImportant')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
         <button type="submit" class="btn btn-blue">Update</button>
     </form>
 @endsection
