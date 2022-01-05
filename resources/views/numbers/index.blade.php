@@ -22,6 +22,13 @@
 
             <p>Phone Number: {{ $number->phone_number }}</p>
             <p>Mobile Number: {{ $number->mobile_number }}</p>
+            @if($number->isFavourite == '1')
+                <p>♡</p>
+            @endif
+            @if($number->isImportant == '1')
+                <p>!!!</p>
+            @endif
+
 
             <form action="{{ route('numbers.destroy', $number->id) }}" method="POST">
                 <a class="btn btn-blue" href="{{ route('numbers.show', $number->id) }}">Show</a>

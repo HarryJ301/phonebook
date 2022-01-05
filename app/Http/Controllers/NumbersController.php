@@ -73,6 +73,8 @@ class NumbersController extends Controller
         $number->url = $request->url;
         $number->other_names = $request->other_names;
         $number->notes = $request->notes;
+        $number->isFavourite = $request->isFavourite;
+        $number->isImportant = $request->isImportant;
         $number->user()->associate(Auth::user());
         $number->save();
 
@@ -132,6 +134,8 @@ class NumbersController extends Controller
             'url' => $number,
             'other_names' => $number,
             'notes' => $number,
+            'isFavourite' => $number,
+            'isImportant' => $number,
 
         ]);
     }
@@ -163,6 +167,8 @@ class NumbersController extends Controller
         $number->url = $request->url;
         $number->other_names = $request->other_names;
         $number->notes = $request->notes;
+        $number->isFavourite = $request->isFavourite;
+        $number->isImportant = $request->isImportant;
         $number->save();
 
         return redirect()

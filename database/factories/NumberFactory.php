@@ -32,6 +32,8 @@ class NumberFactory extends Factory
             'url' => $this->faker->url(),
             'other_names' => $this->faker->firstName(),
             'notes' => $this->faker->realText(),
+            'isFavourite' => $this->faker->boolean('10'),
+            'isImportant' => $this->faker->boolean('10'),
         ];
     }
 }

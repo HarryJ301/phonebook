@@ -28,6 +28,8 @@ class CreateNumbersTable extends Migration
             $table->string('url')->nullable();
             $table->string('other_names')->nullable();
             $table->longText('notes')->nullable();
+            $table->boolean('isFavourite')->nullable();
+            $table->boolean('isImportant')->nullable();
             $table->timestamps();
         });
     }
