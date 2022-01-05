@@ -32,6 +32,13 @@
                                 name="password"
                                 required autocomplete="current-password" />
             </div>
+                <br>
+
+                @if(config('services.recaptcha.key'))
+                    <div class="g-recaptcha"
+                         data-sitekey="{{config('services.recaptcha.key')}}">
+                    </div>
+            @endif
 
             <!-- Remember Me -->
             <div class="block mt-4">

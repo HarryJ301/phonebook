@@ -44,6 +44,12 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
+                <br>
+                @if(config('services.recaptcha.key'))
+                    <div class="g-recaptcha"
+                         data-sitekey="{{config('services.recaptcha.key')}}">
+                    </div>
+                @endif
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
