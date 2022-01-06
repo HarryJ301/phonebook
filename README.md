@@ -1,115 +1,168 @@
-﻿Harry Jackson - U1964301
+Harry Jackson - U1964301
 
 Advanced Web Programming 2021
 
-Assignment One
+Assignment Two
 
-# InterBook - The online phonebook
+# InterBook V2- The Supercharged online phonebook
 
-This is a descriptive readme file and step by step guide to installing InterBook, the online phonebook!
+This is a descriptive readme file and step by step guide to installing InterBookV2, the Supercharged online phonebook!
 
 # Description
-The InterBook Online Phonebook is a free to use web application where uses can create an account on and store their phone numbers. Users can store up to 100 to numbers. These are stored in a secure database along with their account information in two separate tables, 'users' and 'numbers'. 
+---
+The InterBookV2 Online Phonebook is a free to use web application where uses can create an account on and store their contacts securely. Users can store up to 500 to contacts each. These are stored in a secure database along with their account information in two separate tables, 'users' and 'numbers'.
 
-This app utilizes the PHP framework, Laravel, and uses an SQL database managed by phpMyAdmin.
+This app utilizes the PHP framework, Laravel, Google's ReCAPTCHA API, Email Authentication and uses an SQL database managed by phpMyAdmin.
 
-A users numbers are displayed by accessing the numbers database and only fetching the corresponding numbers that are associated with that users user ID. This is then rendered onto the browser using Blade. 
+A user’s contacts are displayed by accessing the numbers database and only fetching the corresponding contact that are associated with that user. This is then rendered onto the browser using Blade. 
 
 Users can also add, edit and remove numbers as they wish.
 
- - To create a new number, the application fetches the current user ID to inject into the statement. It then collects the users data via input text boxes via Blade. This is then sent to the controller where it then gets sent to the data model which creates an new number. 
-- To edit, the application does the same as creating except instead it takes the current number and displays it on the screen for the user to see. This is so the user know what the number was before in case they change their minds. 
+ - To create a new contact, the application fetches the current user ID for validation. It then collects the user’s data via input text boxes via Blade. This is then sent to the controller where it then gets sent to the data model which creates a new number. 
+- To edit, the application does the same as creating except users can now edit all the attributes of their contact.
 - To remove, the application gets the current database instance that has been selected and uses the database model method 'delete()' to remove it.
 
+The attributes list is as follows.
+
+    -First name *
+    -Middle name
+    -Last name *
+    -Maiden name
+    -Phone number *
+    -Mobile number
+    -Address
+    -Postcode
+    -Birthday
+    -Email address
+    -Occupation
+    -Contacts Website (URL)
+    -Other names
+    -Notes
+    -Is Favourite
+    -Is Important
+    
+NB: Asterisk indicate required fields.
+
+Users can also search their contact database by either the first name or the phone number.
+This is then ran and an updated view is show to the user.
+
 # Installation
-You can use XAMPP to host this application.
 
-XAMPP download - https://www.apachefriends.org/index.html
-Download for Windows and run the setup, leaving all settings at default and un-check 'bitnami install'. It is recommended that you install XAMPP at the root of your C drive i.e., 'C:\xampp'.
+---
 
-After, download the application package and extract it in to the 'htdocs' folder within the 'xampp' folder. 
+## Prerequisites
 
-Run XAMPP and start the Apache and MySQL services.
-Then, open up the shell and type in the following command:
-- cd C:\xampp\htdocs\assignment_01
+- Web server
+- Composer
+- MySql
+- Node.js & npm
 
-This will tell XAMPP's shell where to execute commands. 
+### Steps:
 
-We now need to create a database environment for the application to use.
+1. Create a MySQL.
 
-From XAMPP, click the services Admin button on the MYSQL service. This will launch PHPMyAdmin, which is a GUI, web based management tool for MySQL.
+2. Clone the repo into a directory: git@github.com:hudds-awp2021-cht2520/assignment-02-HarryJ301.git
 
-Click ‘User Accounts’ from the tabs on the right and ‘Add user account’. Add a user account with the following settings:
--	Username: phonebook
--	Password: mysecurepassword
--	Create database with same name and grant all privileges: true
+3. Using a CLI, CD into the directory.
 
-In the XAMPP terminal, execute the following commands in order:  
-  
-1. mysql -u phonebook -p phonebook  
+4. Install the PHP dependencies:
+```
+php composer install
+```
 
-2. \c
+5. Install the front-end dependencies:
+```
+npm install
+```
 
-4. php artisan migrate
+6. Open the .env file in the root of the directory and add your database details. 
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mydb
+DB_USERNAME=myuser
+DB_PASSWORD=mypassword
+```
 
-Now, we need to create dummy data. To do this, we need to execute the following command:
+7. Add the application key to the environment:
+```
+php artisan key:generate
+```
 
-- php artisan db:seed
+8. Run the database migrations:
+```
+php artisan migrate
+```
 
-We should now see data in the database in both the users table and the numbers table. Go to PHPMyAdmin to see what has been created and note down an email address of a random user. We will need this to login to the application. 
+9. Seed the database with dummy data:
+```
+php artisan db:seed
+```
 
-Now, execute the following command in the XAMPP shell:
+We should now see data in the database in both the users table and the numbers table. Go to PhpMyAdmin to see what has been created.
 
-- php artisan serve
+For testing purposes, a generic admin account has been created.
 
-This creates a web space for the application.
-Open your browser and navigate to http://127.0.0.1:8000/. 
+- Email: admin@email.com
+- Password: password
+
+10. Finally, configure a virtual host in your dev webserver, pointing to the `/public` directory.
+
+
 This will display the Laravel welcome screen. In the top right corner, you will see two buttons, login and register. Click login.
 
 This will then take you to the login page of the online phonebook. 
 
-Enter the email of the random user and use 'password' as the password.
+Enter the admin login details stated above.
 
-You will then be taken to the dashboard where you can view, add, edit and delete your numbers.
+You will then be taken to the dashboard where you can view, add, edit and delete your contacts.
 
-*Note: Due to the database seed being random, there is a small possibility that the user you choose does not have any numbers attached to them. This means that when you click 'numbers', nothing will show. If this happens, go back to PHPMyAdmin and pick another user to login in with.* 
+The admin account has 20 contacts.
+
 
 # Usage
-To access the application, you can either use a pre-made user or register yourself. To do this, simply open up the welcome screen by navigating to http://127.0.0.1:8000/. Then at the top right, click register.
+To access the application, you can either use a pre-made user or register yourself. To do this, simply open the welcome screen by navigating to the host space URL. Then at the top right, click register.
 Fill in your details and clock register. This will then take you to the dashboard of the application.
 
-![Dashboard](https://i.ibb.co/sm466Vq/dashboard.png)
+![Dashboard](https://i.ibb.co/RYWscwq/dashboard.png)
 Above is an image of what the dashboard looks like.
 You can see your numbers by clicking 'Numbers', add new ones by clicking 'Add Number' and log out by clicking you name in the top right of the web page. 
 
-![Numbers Page](https://i.ibb.co/25MPtHf/numbers.png)
+![Contacts Page](https://i.ibb.co/3prBVRL/contacts.png)
 
-Above is where your numbers are displayed. In this instance, we are using a brand new account therefore we need to add some numbers. To do so, click 'Add number'.
+Above is where your numbers are displayed. In this instance, we are using a brand-new account therefore we need to add some numbers. To do so, click 'Add number'.
 
-![Add Numbers Page](https://i.ibb.co/RYbR7Xw/add-numbers.png)
+![Add Contacts Page](https://i.ibb.co/th2Tjmh/add-contact.png)
 
-In this page, we can add numbers to our account. You can attach a name to your number to make it easily identifiable. The User ID field cannot be edited but is displayed here for database purposes.
-In this case we are going to add John Doe's number, '0123456789'. 
+In this page, we can add contacts to your account. The attributes list is posted in the introduction of the readme.
 
-![Added Number](https://i.ibb.co/gwxjmLC/number-added.png)
+We can also edit the number and change the name attached to a number.
 
-Once the number has been created, the application will take you back to the numbers view. Here, we can see that John Doe has been added successfully. 
+![Booleans](https://i.ibb.co/sgGkwKD/boolean-attributes.png)
 
-We can also edit the number and change the name attached to a number. To do this, we click 'Edit'.
+Users can also decide whether a certain contacts should be a favourite or an important.
+If the contact is a favourite, a small heart will appear at the bottom of the contacts details.
+If the contact is important, three exclamation marks will appear. (!!!)
 
- ![Edit Number](https://i.ibb.co/S6JSndn/edit-number.png)
+![Search&Export](https://i.ibb.co/5Tj7qPT/search-and-export.png)
 
-The application tells us the previous number and name for reference. We can then click 'Update' when we are happy with the edit. In this instance, we are changing the name to 'Jane Doe' and the number to '0987654321'. 
+The application can also search individual contacts by first name or number.
 
-![Updated Number](https://i.ibb.co/qd7W0YJ/updated-number.png)
+![Search Results](https://i.ibb.co/DDnZ5H1/search-result.png)
 
-We can also delete an entry. This will remove the number from the database entirely. 
+This is the result when we search for Marion.
 
-After all the numbers have been added, we can revert back to the dashboard by clicking 'Home'. 
+![Search Results](https://i.ibb.co/VSfQCbN/download.png)
 
-![Logout](https://i.ibb.co/47y0rZM/logout.png)
+You can also download your contacts as a .csv file that you can view and transfer or print.
 
-We can then click our name at the top right corner of the page and click 'Log Out'. 
+![Login Captcha](https://i.ibb.co/Z8LytNC/login-with-captcha.png)
+
+This is the login page with the extra security of Google's ReCAPTCHA. This will try to stop automated bots making too many requests. The same ReCAPTCHA is on the register form also.
+
+![Register Captcha](https://i.ibb.co/jfwF9xd/register-with-captcha.png)
+
 
 # Testing
 
@@ -124,12 +177,38 @@ You may see this error:
 
 	PDOException: SQLSTATE[HY000] [1049] Unknown database
 
-This means that the application cannot access the database 'phonebook'.
+This means that the application cannot access the database.
+
 
 Solution:
-Go to PHPMyAdmin and check that the database 'phonebook' exist and that all tables are present and correct.
+Go to PhpMyAdmin and check that the database exists and that all tables are present and correct.
+You might need to run the migration and seed commands again.
+
+# Reflective analysis
+
+During development, numerous concerns arise when implementing new attributes like users’ emails and birthdays. These are sensitive pieces of information that must be stored securely. Laravel is much more secure than standard PHP however, certain measures and security features must be added to enhance this. One implementation that contributes to this is the use of Google's ReCAPTCHA for login and register.
+
+ReCAPTCHA is a security function that prompts users to check a box before they login or register. Another name for ReCAPTCHA is the 'human test'. Users must move their mouse and check the box. This security feature is designed to stop automated bots from making too many login requests or making dummy accounts and overloading the web servers and database servers. The ultimate malicious goal of the automated bots is to slow down or terminate the service of the website. This can also expose certain security flaws of the application. Google ReCAPTCHA tries to prevent this. 
+
+In my implementation, I have included it every time a user logs in or registers. The function was relatively easy to implement in Laravel. I started by researching how Google authenticates ReCAPTCHA requests. There are two keys that are used, an API key and a secret key. Both can be obtained by creating a paid account on Google's cloud service. However, Google offer a set of development keys. These are defined in the .env file of the project.
+
+Within the source code, the ReCAPTCHA function is present in a Validator class where each request is made by a 'client' i.e., the user. This is then verified with the keys and sent to a Google URL. This then fetches the code that displays the ReCAPTCHA.
+
+Then, in the apps requests classes, there is a 'LoginRequest.PHP' class. This is where the rules are defined for what the application needs for a successful login. The same is present in the Register Request rules.
+```
+'g-recaptcha-response' => 'required|recaptcha'
+```
+The above snippet of code indicates that ReCAPTCHA is required.
+If the user is successful, the login page will accept the request and log the user in.
+If the user fails to check the CAPTCH, the login or register form will prompt the user to complete ReCAPTCHA and will not log the user in, thus protecting the system from malicious attacks from automated bots.
+
+Other major features were implemented like the search feature, however, I felt that ReCAPTCHA is the most important one due to its security benefits.  
 
 # Appendix
+
+Google ReCAPTCHA requires an API key and Secret Key. For testing purposes, the keys are development keys and are placed in the .env file of the project.
+If ReCAPTCHA fails, check the .env file that the keys are present.
+See screenshots for more details on ReCAPTCHA.
 
 References:
 
@@ -143,3 +222,4 @@ References:
 Technical data:
 Developed using HTML, PHP, CSS with the Laravel Framework. 
 Laravel v8.68.1 (PHP v8.0.12)
+Google ReCAPTCHA API

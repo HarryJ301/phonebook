@@ -41,4 +41,85 @@ class NumberTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_user_not_authorised() {
+        $response = $this
+            ->followingRedirects()
+            ->get('/numbers');
+
+        $response->assertViewIs('auth.login');
+    }
+
+    public function test_wrong_user_cannot_see_contacts() {
+        $user = User::factory()->create();
+        $number = Number::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $wrongUser = User::factory()->create();
+
+        $response = $this
+            ->followingRedirects()
+            ->actingAs($wrongUser)
+            ->get("/numbers/{$number->id}");
+
+        $response->assertForbidden();
+    }
+
+    public function test_update_authorised_wrong_user_receives_403() {
+        $newNumber = '0123456789';
+        $user = User::factory()->create();
+        $number = Number::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $wrongUser = User::factory()->create();
+
+        $response = $this
+            ->followingRedirects()
+            ->actingAs($wrongUser)
+            ->put("/number/{$number->id}", [
+                'phone_number' => $newNumber
+            ]);
+
+        $latestNumber = $number->fresh();
+
+        $response->assertForbidden();
+        $this->assertNotEquals($latestNumber->phone_number, $newNumber);
+    }
+
+    public function test_update_incomplete_data_fails_validation() {
+        $newNumber = '';
+        $user = User::factory()->create();
+        $number = Number::factory()->create([
+            'user_id' => $user->id
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->put("/number/{$number->id}", [
+                'phone_number' => $newNumber
+            ]);
+
+        $latestNumber = $number->fresh();
+
+        $response->assertSessionHasErrors([
+            'phone_number' => 'The number field is required.'
+        ]);
+        $this->assertNotEquals($latestNumber->phone_number, $newNumber);
+    }
+
+    public function user_search_function_success() {
+        $user = User::factory()->create();
+        $number = Number::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $search = $number -> get('first_name');
+
+        $response = $this
+            ->actingAs($user)
+            ->put("/number/{$number->id}", [
+                    'first_name' => $search
+            ]);
+        $response->assertStatus(200);
+    }
+
 }
