@@ -166,7 +166,7 @@ This is the login page with the extra security of Google's ReCAPTCHA. This will 
 
 # Testing
 
-There are tests that are provided with this application to test the login methods and database calls for creating and editing numbers. To run these tests simply execute the following command in a CLI shell that has is CD in the root of the directory:
+There are tests that are provided with this application to test the login methods and database calls for creating and editing numbers. To run these tests simply execute the following command in a CLI:
 
 - php artisan test
 
